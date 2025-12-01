@@ -2,7 +2,7 @@
 html, body { height: 100%; }
 body {
     font-family: 'Oswald', Arial, sans-serif;
-    background: linear-gradient(180deg, #D94E2A 5%, #ffffff 100%) no-repeat;
+    background: linear-gradient(180deg, #ff987e 5%, #ffffff 100%) no-repeat;
     background-size: 100% 100%;
     min-height: 100vh;
     margin: 0;
@@ -10,7 +10,7 @@ body {
 }
 .atelier-header {
     background: #ffffff;
-    box-shadow: 0 2px 8px #ff6600;
+    box-shadow: 0 2px 8px ##ffa26c;
     padding: 18px 0;
 }
 .header-content {
@@ -644,3 +644,4 @@ footer {
         padding: 10px 14px;
     }
 }
+
