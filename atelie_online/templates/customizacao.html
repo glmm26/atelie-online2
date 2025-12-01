@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Customização{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/customizacao.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/material-selector.css') }}">
+
+<body class="back_serv">
+  <h1>Customização</h1>
+
+  <div class="exemplo-customizacao-container">
+    <div class="exemplo-card">
+      <img src="{{ url_for('static', filename='img/cus1.jpg') }}" alt="Exemplo Customização 1" class="exemplo-img">
+      <div class="card-price">R$ 120,00</div>
+    </div>
+    
+    <div class="exemplo-card">
+      <img src="{{ url_for('static', filename='img/cus2.jpg') }}" alt="Exemplo Customização 2" class="exemplo-img">
+      <div class="card-price">R$ 120,00</div>
+    </div>
+    
+    <div class="exemplo-card">
+      <img src="{{ url_for('static', filename='img/cus3.jpg') }}" alt="Exemplo Customização 3" class="exemplo-img">
+      <div class="card-price">R$ 120,00</div>
+    </div>
+    
+    <div class="exemplo-card">
+      <img src="{{ url_for('static', filename='img/cus4.jpg') }}" alt="Exemplo Customização 4" class="exemplo-img">
+      <div class="card-price">R$ 120,00</div>
+    </div>
+  </div>
+
+  <div class="top-right-container">
+    <form action="{{ url_for('servicos.customizacao') }}" method="POST" class="material-form">
+      <div class="material-selector">
+        <label for="material-select">Material:</label>
+        <select name="material" id="material-select" class="material-select" required>
+          <option value="">Selecionar...</option>
+          <option value="ziper">Zíper R$120.00</option>
+          <option value="ilhos">Ilhós R$120.00</option>
+          <option value="fita">Fita R$120.00</option>
+          <option value="linha">Linha R$120.00</option>
+          <option value="botao">Botão R$120.00</option>
+          <option value="vies">Viés R$120.00</option>
+          <option value="cursor">Cursor R$120.00</option>
+        </select>
+        
+        <label for="descricao" style="margin-top: 12px;">Descrição da Customização (opcional):</label>
+        <textarea name="descricao" id="descricao" class="material-select" placeholder="Descreva seus detalhes de customização..." style="resize: vertical; min-height: 80px;"></textarea>
+        
+        <button type="submit" class="material-btn">Confirmar</button>
+      </div>
+    </form>
+    <a href="javascript:history.back()" class="back-btn">Voltar</a>
+  </div>
+
+</body>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Checkout - Pagamento{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+{% endblock %}
+{% block content %}
+<div class="checkout-container" style="max-width:900px;">
+  <h2>Checkout do pedido</h2>
+  <p><strong>Serviço:</strong> {{ pending.tipo_servico }}</p>
+  <p><strong>Descrição:</strong> {{ pending.descricao }}</p>
+  {% if pending.material %}
+    <p><strong>Material:</strong> {{ pending.material }}</p>
+  {% endif %}
+  {% if pending.price is defined %}
+    <p class="checkout-summary"><strong>Preço:</strong> <span class="price">R$ {{ '%.2f' % pending.price }}</span></p>
+  {% endif %}
+
+  <form id="checkout-form" action="{{ url_for('servicos.checkout_confirm') }}" method="post" style="margin-top:16px;">
+    <h3>Dados de Pagamento</h3>
+    <div class="delivery-toggle" style="margin:12px 0;">
+      <label class="include-delivery-label">
+        <input id="include-delivery" name="include_delivery" type="checkbox"> <span>Incluir entrega (adicionar endereço de entrega)</span>
+      </label>
+    </div>
+    <div id="delivery-section" style="display:none;border-radius:8px;padding:12px;background:rgba(255,255,255,0.6);margin-bottom:12px;border:1px solid rgba(16,24,40,0.04);">
+      <h4 style="margin:0 0 8px 0;font-size:1rem;color:#2b2b2b">Endereço de Entrega (opcional)</h4>
+      <div class="checkout-grid">
+        <div class="col">
+          <label for="entrega-nome">Nome do destinatário</label>
+          <input id="entrega-nome" name="entrega_nome" type="text" class="form-control" maxlength="50">
+        </div>
+        <div class="col">
+          <label for="entrega-endereco">Endereço</label>
+          <input id="entrega-endereco" name="entrega_endereco" type="text" class="form-control" maxlength="80">
+        </div>
+        <div style="min-width:140px;">
+          <label for="entrega-cidade">Cidade</label>
+          <input id="entrega-cidade" name="entrega_cidade" type="text" class="form-control" maxlength="40">
+        </div>
+        <div style="min-width:120px;">
+          <label for="entrega-estado">Estado</label>
+          <input id="entrega-estado" name="entrega_estado" type="text" class="form-control" maxlength="2" placeholder="UF">
+        </div>
+        <div style="min-width:120px;">
+          <label for="entrega-cep">CEP</label>
+          <input id="entrega-cep" name="entrega_cep" type="text" class="form-control" maxlength="9" placeholder="00000-000">
+        </div>
+      </div>
+    </div>
+    <div class="checkout-grid">
+      <div class="col">
+        <label for="card-name">Nome no Cartão</label>
+        <input id="card-name" name="card_name" type="text" class="form-control card-name" inputmode="text" maxlength="50" autocomplete="cc-name" required>
+      </div>
+      <div class="col">
+        <label for="card-number">Número do Cartão</label>
+        <input id="card-number" name="card_number" type="text" class="form-control card-number" placeholder="0000 0000 0000 0000" inputmode="numeric" maxlength="19" autocomplete="cc-number" required>
+      </div>
+      <div style="min-width:140px;">
+        <label for="card-exp">Validade</label>
+        <input id="card-exp" name="card_exp" type="text" class="form-control card-exp" placeholder="MM/AA" inputmode="numeric" maxlength="5" autocomplete="cc-exp" required>
+      </div>
+      <div style="min-width:120px;">
+        <label for="card-cvv">CVV</label>
+        <input id="card-cvv" name="card_cvv" type="text" class="form-control card-cvv" inputmode="numeric" maxlength="4" autocomplete="cc-csc" required>
+      </div>
+    </div>
+    <p class="note-small">Este é um fluxo de pagamento simulado para demonstração. Nenhum dado será cobrado.</p>
+    {% if pending.price is defined %}
+      <p style="margin-top:8px;font-weight:700;color:var(--accent);">Total a pagar: <span class="price">R$ {{ '%.2f' % pending.price }}</span></p>
+    {% endif %}
+    <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+      <button type="submit" class="btn-pay">Pagar e Confirmar Pedido</button>
+      <a href="{{ url_for('home') }}" class="btn-secondary">Voltar</a>
+    </div>
+  </form>
+  </form>
+</div>
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/payments.js') }}"></script>
+{% endblock %}
+{% endblock %}

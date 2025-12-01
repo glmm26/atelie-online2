@@ -1,0 +1,121 @@
+.top-right-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 90%;
+}
+
+.material-form {
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.material-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.material-selector label {
+    color: #5b524b;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.material-select {
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9em;
+    background-color: white;
+    color: #5b524b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.material-select:hover {
+    border-color: #8b7355;
+}
+
+.material-select:focus {
+    outline: none;
+    border-color: #8b7355;
+    box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.2);
+}
+
+.material-btn {
+    background: linear-gradient(135deg, #D94E2A 0%, #c23d1a 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95em;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.material-btn:hover {
+    background: linear-gradient(135deg, #c23d1a 0%, #a82d0a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(217, 78, 42, 0.3);
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #f5f5f5;
+    color: #5b524b;
+    text-decoration: none;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.back-btn:hover {
+    background-color: #5b524b;
+    color: white;
+    border-color: #5b524b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Animação suave ao aparecer */
+.top-right-container {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

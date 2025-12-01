@@ -1,0 +1,85 @@
+body {
+    background: url('../img/cus1.jpg') no-repeat center center;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #5b524b;
+}
+.container {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 2px 8px #eee;
+    padding: 32px;
+    margin: 80px auto;
+    max-width: 600px;
+}
+
+.exemplo-customizacao-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  padding: 40px 20px 40px 200px;
+  max-width: 1200px;
+  margin: 80px auto 0 auto;
+}
+
+@media (max-width: 900px) {
+  .exemplo-customizacao-container {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 60px auto 0 auto;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .exemplo-customizacao-container {
+    grid-template-columns: 1fr;
+    margin: 40px 20px 0 20px;
+    gap: 20px;
+  }
+}
+
+.exemplo-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.exemplo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(217, 78, 42, 0.2);
+}
+
+.exemplo-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.top-right-container {
+    
+    margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .top-right-container {
+    margin-top: 20px;
+  }
+}
+
+.button_center {
+    display: flex;
+    justify-content: left;
+    margin-top: 16px;
+    margin-left: 315px; 
+}
+
+.card-price{
+  text-align:center;
+  padding:8px 0 16px 0;
+  color:#065f46;
+  font-weight:700;
+}

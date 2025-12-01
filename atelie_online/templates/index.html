@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Ateliê Online</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pedido_status.css') }}">
+</head>
+<body>
+    <header class="atelier-header">
+        <div class="header-content">
+            <div class="header-left">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="height:48px; vertical-align:middle;">
+                <span class="header-title">Ateliê Online</span>
+            </div>
+            <nav class="header-center atelier-nav">
+                <ul>
+                    <li><a href="{{ url_for('servicos.estamparia') }}">Estamparia</a></li>
+                    <li><a href="{{ url_for('servicos.conserto') }}">Conserto</a></li>
+                    <li><a href="{{ url_for('servicos.customizacao') }}">Customização</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="user-menu">
+                    <button class="user-btn" id="userBtn">
+                        {% if current_user.foto %}
+                            <!-- use inline SVG with an <image> so we can center/crop the photo inside a circle -->
+                            <svg class="user-avatar-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <defs>
+                                    <clipPath id="avatarClip">
+                                        <circle cx="22" cy="22" r="22" />
+                                    </clipPath>
+                                </defs>
+                                <image x="0" y="0" width="44" height="44" href="{{ url_for('static', filename='uploads/' ~ current_user.foto) }}" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatarClip)" />
+                            </svg>
+                        {% else %}
+                            <img src="{{ url_for('static', filename='img/default_profile.svg') }}" alt="Foto padrão" class="user-avatar">
+                        {% endif %}
+                    </button>
+                    <div class="user-dropdown" id="userDropdown" style="display:none;">
+                        <a href="{{ url_for('auth.profile') }}" class="profile-btn">Perfil</a>
+                        <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
+                    </div>
+                </div>
+                <div class="cart-menu">
+                    <button class="cart-btn" id="cartBtn" title="Meus Pedidos">
+                        🛒
+                        <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+                    </button>
+                    <div class="cart-dropdown" id="cartDropdown" style="display:none;">
+                        <div class="cart-dropdown-content" id="cartContent">
+                            <!-- Conteúdo dos pedidos será carregado aqui -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Conteúdo principal pode ser adicionado depois -->
+    <main class="main-cards">
+        <a href="{{ url_for('servicos.estamparia') }}" class="card-link">
+            <div class="card">
+                <h2 class="card-title">Estamparia</h2>
+                <img src="{{ url_for('static', filename='img/est1.jpg') }}" alt="Estamparia" class="card-img">
+                <p class="card-desc">Personalize peças com estampas exclusivas e modernas para todos os gostos.</p>
+            </div>
+        </a>
+        <a href="{{ url_for('servicos.conserto') }}" class="card-link">
+            <div class="card">
+                <h2 class="card-title">Conserto</h2>
+                <img src="{{ url_for('static', filename='img/cons1.jpg') }}" alt="Conserto" class="card-img">
+                <p class="card-desc">Recupere e renove suas roupas e acessórios com nosso serviço especializado.</p>
+            </div>
+        </a>
+        <a href="{{ url_for('servicos.customizacao') }}" class="card-link">
+            <div class="card">
+                <h2 class="card-title">Customização</h2>
+                <img src="{{ url_for('static', filename='img/cus1.jpg') }}" alt="Customização" class="card-img">
+                <p class="card-desc">Transforme suas peças com detalhes únicos e materiais diferenciados.</p>
+            </div>
+        </a>
+    </main>
+    <a href="{{ url_for('servicos.projeto') }}" class="floating-projeto-btn" title="Projeto">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="8" width="20" height="16" rx="3" fill="#fff" stroke="#D94E2A" stroke-width="2"/>
+            <line x1="10" y1="12" x2="22" y2="12" stroke="#D94E2A" stroke-width="1.5"/>
+            <line x1="10" y1="16" x2="22" y2="16" stroke="#D94E2A" stroke-width="1.5"/>
+            <line x1="10" y1="20" x2="18" y2="20" stroke="#D94E2A" stroke-width="1.5"/>
+        </svg>
+    </a>
+    <script>
+        const userBtn = document.getElementById('userBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        const cartBtn = document.getElementById('cartBtn');
+        const cartDropdown = document.getElementById('cartDropdown');
+        const cartContent = document.getElementById('cartContent');
+        const cartBadge = document.getElementById('cartBadge');
+
+        // Toggle user dropdown
+        userBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+            cartDropdown.style.display = 'none'; // Fecha o carrinho ao abrir perfil
+        });
+
+        // Toggle cart dropdown
+        cartBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
+            userDropdown.style.display = 'none'; // Fecha o perfil ao abrir carrinho
+            if (cartDropdown.style.display === 'block') {
+                loadCartItems();
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function() {
+            userDropdown.style.display = 'none';
+            cartDropdown.style.display = 'none';
+        });
+
+        // Load cart items (consertos pedidos)
+        function loadCartItems() {
+            cartContent.innerHTML = `
+                <h3>Carregando...</h3>
+                <div class="cart-loading">
+                    <div class="cart-loading-spinner"></div>
+                    <div class="cart-loading-text">Buscando seus pedidos...</div>
+                </div>
+            `;
+            
+            fetch('/api/meus-pedidos')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.pedidos && data.pedidos.length > 0) {
+                        let html = '<h3>Meus Pedidos</h3>';
+                        data.pedidos.forEach((pedido, index) => {
+                            const dataFormatada = pedido.data_pedido ? new Date(pedido.data_pedido).toLocaleDateString('pt-BR') : '';
+                            // map status display and CSS class
+                            const statusRaw = pedido.status || 'Pendente';
+                            const statusMap = {
+                                'Pendente': 'Pendente',
+                                'Em Progresso': 'Em processo',
+                                'Entregue': 'Entregue',
+                                    'Concluida': 'A caminho',
+                                'Recusada': 'Recusada'
+                            };
+                            const statusLabel = statusMap[statusRaw] || statusRaw;
+
+                            const statusClassMap = {
+                                'Pendente': 'status-pendente',
+                                'Em Progresso': 'status-em-progresso',
+                                'Entregue': 'status-entregue',
+                                'Concluida': 'status-a-caminho',
+                                'Recusada': 'status-recusada',
+                                'Cancelado': 'status-cancelado'
+                            };
+                            const statusClass = statusClassMap[statusRaw] || 'status-default';
+
+                            html += `
+                                <div class="cart-item" style="animation: fadeInUp 0.4s ease ${index * 0.05}s both;">
+                                    <div class="cart-item-title">${pedido.tipo_servico}</div>
+                                    <div class="cart-item-desc">${pedido.descricao || 'Sem descrição adicional'}</div>
+                                    <div class="cart-item-status pedido-status ${statusClass}">${statusLabel}</div>
+                                    <div class="cart-item-date">${dataFormatada}</div>
+                                </div>
+                            `;
+                        });
+                        cartContent.innerHTML = html;
+                        cartBadge.textContent = data.pedidos.length;
+                        cartBadge.style.display = 'flex';
+                    } else {
+                        cartContent.innerHTML = `
+                            <h3>Meus Pedidos</h3>
+                            <div class="cart-empty">
+                                <div class="cart-empty-icon">🛒</div>
+                                <div class="cart-empty-text">Nenhum pedido realizado ainda</div>
+                            </div>
+                        `;
+                        cartBadge.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar pedidos:', error);
+                    cartContent.innerHTML = `
+                        <h3>Meus Pedidos</h3>
+                        <div class="cart-empty">
+                            <div class="cart-empty-icon">⚠️</div>
+                            <div class="cart-empty-text">Erro ao carregar pedidos. Tente novamente.</div>
+                        </div>
+                    `;
+                });
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</body>
+</html>

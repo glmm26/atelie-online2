@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Conserto{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/conserto.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/material-selector.css') }}">
+
+<body class="back_serv">
+  <h1>Consertos</h1>
+
+  <div class="exemplo-consertos-container">
+    <div class="exemplo-card">
+      <img src="{{ url_for('static', filename='img/cons1.jpg') }}" alt="Exemplo Conserto 1" class="exemplo-img">
+      <h3>Exemplo 1</h3>
+      <div class="card-price">R$ 80,00</div>
+    </div>
+    
+    <div class="exemplo-card">
+      <img src="{{ url_for('static', filename='img/cons2.jpg') }}" alt="Exemplo Conserto 2" class="exemplo-img">
+      <h3>Exemplo 2</h3>
+      <div class="card-price">R$ 80,00</div>
+    </div>
+    
+    <div class="exemplo-card">
+      <img src="{{ url_for('static', filename='img/cons3.jpg') }}" alt="Exemplo Conserto 3" class="exemplo-img">
+      <h3>Exemplo 3</h3>
+      <div class="card-price">R$ 80,00</div>
+    </div>
+  </div>
+
+  <div class="top-right-container">
+    <form action="{{ url_for('servicos.conserto') }}" method="POST" class="material-form">
+      <div class="material-selector">
+        <label for="material-select">Tipo de Conserto:</label>
+        <select name="material" id="material-select" class="material-select" required>
+          <option value="">Selecionar...</option>
+          <optgroup label="Calça">
+            <option value="Ajustar cós">Ajustar Cós R$80.00</option>
+            <option value="Soltar cós">Aumentar Cós R$80.00</option>
+            <option value="Ajustar perna">Ajustar Perna R$80.00</option>
+            <option value="Diminuir barra">Diminuir Barra R$80.00</option>
+          </optgroup>
+          <optgroup label="Camisa">
+            <option value="Encurtar manga">Encurtar Comprimento da Manga R$80.00</option>
+            <option value="Pence">Pence R$80.00</option>
+            <option value="Ajuste lateral">Ajuste Lateral R$80.00</option>
+          </optgroup>
+        </select>
+        
+        <label for="descricao" style="margin-top: 12px;">Descrição do Conserto (opcional):</label>
+        <textarea name="descricao" id="descricao" class="material-select" placeholder="Descreva o tipo de conserto necessário..." style="resize: vertical; min-height: 80px;"></textarea>
+        
+        <button type="submit" class="material-btn">Confirmar Pedido</button>
+      </div>
+    </form>
+    <a href="javascript:history.back()" class="back-btn">Voltar</a>
+  </div>
+
+</body>
+{% endblock %}
