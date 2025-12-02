@@ -1,0 +1,30 @@
+#version: '3.8'
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/atelie_db
+      - SECRET_KEY=Atelie123
+      - FLASK_ENV=development
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app
+      - uploads:/app/atelie_online/static/uploads
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: atelie_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"
+
+volumes:
+  pgdata:
+  uploads:

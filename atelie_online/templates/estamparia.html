@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}Estamparia{% endblock %}
+
+{% block content %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estamparia.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/material-selector.css') }}">
+
+<body class="back_serv">
+  <!-- SVG Background Decorations -->
+  <div class="decor-svg decor-svg1 reverse" style="top:10%;left:5%;">
+    <svg width="160" height="120" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path d="M256,42c-33.88,0-64-10-64-10l0,2A64,64,0,0,0,320,34l0-2S289.88,42,256,42Z" fill="#5b524b" fill-opacity="1"/>
+      <path d="M352,44c-5.49,47.76-46.79,85-96,85s-90.51-37.24-96-85L16,94,34,208l61.71,7.42c7.08.9,7.1.9,7.1,8.19L96,480H416l-6.81-256.39c-.21-7-.21-7,7.1-8.19L478,208,496,94Z" fill="#5b524b" fill-opacity="1"/>
+    </svg>
+  </div>
+
+  <div class="decor-svg decor-svg2" style="top:70%;right:5%;">
+    <svg width="160" height="120" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path d="M256,42c-33.88,0-64-10-64-10l0,2A64,64,0,0,0,320,34l0-2S289.88,42,256,42Z" fill="#5b524b" fill-opacity="1"/>
+      <path d="M352,44c-5.49,47.76-46.79,85-96,85s-90.51-37.24-96-85L16,94,34,208l61.71,7.42c7.08.9,7.1.9,7.1,8.19L96,480H416l-6.81-256.39c-.21-7-.21-7,7.1-8.19L478,208,496,94Z" fill="#5b524b" fill-opacity="1"/>
+    </svg>
+  </div>
+
+  <div class="decor-svg decor-svg3 reverse" style="top:40%;left:35%;">
+    <svg width="160" height="120" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path d="M256,42c-33.88,0-64-10-64-10l0,2A64,64,0,0,0,320,34l0-2S289.88,42,256,42Z" fill="#5b524b" fill-opacity="1"/>
+      <path d="M352,44c-5.49,47.76-46.79,85-96,85s-90.51-37.24-96-85L16,94,34,208l61.71,7.42c7.08.9,7.1.9,7.1,8.19L96,480H416l-6.81-256.39c-.21-7-.21-7,7.1-8.19L478,208,496,94Z" fill="#5b524b" fill-opacity="1"/>
+    </svg>
+  </div>
+
+  <div class="decor-svg decor-svg4" style="top:25%;right:25%;">
+    <svg width="160" height="120" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path d="M256,42c-33.88,0-64-10-64-10l0,2A64,64,0,0,0,320,34l0-2S289.88,42,256,42Z" fill="#5b524b" fill-opacity="1"/>
+      <path d="M352,44c-5.49,47.76-46.79,85-96,85s-90.51-37.24-96-85L16,94,34,208l61.71,7.42c7.08.9,7.1.9,7.1,8.19L96,480H416l-6.81-256.39c-.21-7-.21-7,7.1-8.19L478,208,496,94Z" fill="#5b524b" fill-opacity="1"/>
+    </svg>
+  </div>
+
+  <div class="decor-svg decor-svg5 reverse" style="top:80%;left:50%;">
+    <svg width="160" height="120" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path d="M256,42c-33.88,0-64-10-64-10l0,2A64,64,0,0,0,320,34l0-2S289.88,42,256,42Z" fill="#5b524b" fill-opacity="1"/>
+      <path d="M352,44c-5.49,47.76-46.79,85-96,85s-90.51-37.24-96-85L16,94,34,208l61.71,7.42c7.08.9,7.1.9,7.1,8.19L96,480H416l-6.81-256.39c-.21-7-.21-7,7.1-8.19L478,208,496,94Z" fill="#5b524b" fill-opacity="1"/>
+    </svg>
+  </div>
+
+  <div class="decor-svg decor-svg6" style="top:55%;right:12%;">
+    <svg width="160" height="120" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path d="M256,42c-33.88,0-64-10-64-10l0,2A64,64,0,0,0,320,34l0-2S289.88,42,256,42Z" fill="#5b524b" fill-opacity="1"/>
+      <path d="M352,44c-5.49,47.76-46.79,85-96,85s-90.51-37.24-96-85L16,94,34,208l61.71,7.42c7.08.9,7.1.9,7.1,8.19L96,480H416l-6.81-256.39c-.21-7-.21-7,7.1-8.19L478,208,496,94Z" fill="#5b524b" fill-opacity="1"/>
+    </svg>
+  </div>
+  <header class="service-header">
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <svg width="38" height="38" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px;" aria-hidden="true">
+        <title>shirt</title>
+        <path d="M256,42c-33.88,0-64-10-64-10l0,2A64,64,0,0,0,320,34l0-2S289.88,42,256,42Z" fill="#5b524b"/>
+        <path d="M352,44c-5.49,47.76-46.79,85-96,85s-90.51-37.24-96-85L16,94,34,208l61.71,7.42c7.08.9,7.1.9,7.1,8.19L96,480H416l-6.81-256.39c-.21-7-.21-7,7.1-8.19L478,208,496,94Z" fill="#5b524b"/>
+      </svg>
+      <h1>Estamparia</h1>
+    </div>
+  </header>
+
+  <div class="estampas-container">
+    <div class="estampa-card">
+      <img src="{{ url_for('static', filename='img/est1.jpg') }}" alt="Estampa 1" class="estampa-img">
+      <h3>Estampa 1</h3>
+      <div class="card-price">R$ 50,00</div>
+    </div>
+    
+    <div class="estampa-card">
+      <img src="{{ url_for('static', filename='img/est2.jpg') }}" alt="Estampa 2" class="estampa-img">
+      <h3>Estampa 2</h3>
+      <div class="card-price">R$ 50,00</div>
+    </div>
+    
+    <div class="estampa-card">
+      <img src="{{ url_for('static', filename='img/est3.jpg') }}" alt="Estampa 3" class="estampa-img">
+      <h3>Estampa 3</h3>
+      <div class="card-price">R$ 50,00</div>
+    </div>
+    
+    <div class="estampa-card">
+      <img src="{{ url_for('static', filename='img/est4.jpg') }}" alt="Estampa 4" class="estampa-img">
+      <h3>Estampa 4</h3>
+      <div class="card-price">R$ 50,00</div>
+    </div>
+    
+    <div class="estampa-card">
+      <img src="{{ url_for('static', filename='img/est1.jpg') }}" alt="Estampa 5" class="estampa-img">
+      <h3>Estampa 5</h3>
+      <div class="card-price">R$ 50,00</div>
+    </div>
+    
+    <div class="estampa-card">
+      <img src="{{ url_for('static', filename='img/est4.jpg') }}" alt="Estampa 6" class="estampa-img">
+      <h3>Estampa 6</h3>
+      <div class="card-price">R$ 50,00</div>
+    </div>
+  </div>
+
+  <div class="top-right-container">
+    <form action="{{ url_for('servicos.estamparia') }}" method="POST" enctype="multipart/form-data" class="material-form">
+      <div class="material-selector">
+        <label for="descricao">Descrição da Estampa:</label>
+        <textarea name="descricao" id="descricao" class="material-select" placeholder="Descreva sua ideia de estampa...(R$50.00)" style="resize: vertical; min-height: 80px;"></textarea>
+        
+        <label for="imagem" style="margin-top: 12px;">Upload da Imagem (opcional):</label>
+        <input type="file" name="imagem" id="imagem" class="material-select" accept="image/*">
+        
+        <button type="submit" class="material-btn">Confirmar Pedido</button>
+      </div>
+    </form>
+    <a href="javascript:history.back()" class="back-btn">Voltar</a>
+  </div>
+
+  <style>
+    .estampas-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      padding: 160px 20px 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      transform: translateX(100px);
+      will-change: transform;
+    }
+
+    .estampa-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .estampa-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(217, 78, 42, 0.2);
+    }
+
+    .estampa-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .estampa-card h3 {
+      padding: 16px;
+      margin: 0;
+      text-align: center;
+      color: #D94E2A;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .card-price{
+      text-align:center;
+      padding:8px 0 16px 0;
+      color:#065f46;
+      font-weight:700;
+    }
+  </style>
+{% endblock %}
+</body>
+</html>

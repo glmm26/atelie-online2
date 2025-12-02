@@ -1,0 +1,50 @@
+/* Estilos para status de pedido (pílulas) */
+.pedido-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: #111827; /* cor de texto padrão */
+  border: 1px solid transparent;
+}
+
+.status-pendente {
+  background: #FFF7ED; /* amarelo claro */
+  color: #92400E;
+  border-color: rgba(217,78,42,0.12);
+}
+
+.status-em-progresso {
+  background: #EFF6FF; /* azul claro */
+  color: #1E40AF;
+  border-color: rgba(59,130,246,0.12);
+}
+
+.status-entregue,
+.status-a-caminho {
+  background: #ECFCCB; /* verde claro */
+  color: #166534;
+  border-color: rgba(16,185,129,0.12);
+}
+
+.status-recusada,
+.status-cancelado {
+  background: #FEE2E2; /* vermelho claro */
+  color: #991B1B;
+  border-color: rgba(239,68,68,0.12);
+}
+
+.status-default {
+  background: #F3F4F6; /* cinza claro */
+  color: #374151;
+  border-color: rgba(0,0,0,0.04);
+}
+
+/* Estilos para o bloco dentro do carrinho */
+.cart-item-status {
+  margin-top: 6px;
+}
